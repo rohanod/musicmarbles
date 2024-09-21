@@ -21,10 +21,11 @@
  */
 
 class Plank {
-    constructor(a, b) {
+    constructor(a, b, note) {
         this.a = a;
         this.b = b;
         this.active = 0;
+        this.note = note;  // Add a note property to represent the musical note
 
         let delta_x = a[0] - b[0];
         let delta_y = a[1] - b[1];
@@ -40,7 +41,15 @@ class Plank {
     draw() {
         ctx.translate(this.center_x + offset[0], this.center_y + offset[1]);
         ctx.rotate(this.angle);
+
+        // Draw the plank as before
         ctx.drawImage(this.active > 0 ? PLANK_IMAGES[1] : PLANK_IMAGES[0], -30, -10, 60, 20);
+        
+        // Display the note value on the plank
+        ctx.fillStyle = '#000000';
+        ctx.font = '12px Arial';
+        ctx.fillText(this.note, -15, 5);  // Display the note in the center of the plank
+
         ctx.rotate(-this.angle);
         ctx.translate(-this.center_x - offset[0], -this.center_y - offset[1]);
     }
