@@ -1,4 +1,4 @@
-let Music = [
+let music = [
 {
   "header": {
     "keySignatures": [],
