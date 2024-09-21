@@ -6973,7 +6973,7 @@ let music = [
         }
       ],
       "meta": [],
-      "name": "",
+      "name": "DuckTales",
       "ppq": 1024,
       "tempos": [
         {
