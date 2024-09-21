@@ -3,7 +3,7 @@ let Music = [
   "header": {
     "keySignatures": [],
     "meta": [],
-    "name": "",
+    "name": "SG Anthem",
     "ppq": 480,
     "tempos": [
       {
