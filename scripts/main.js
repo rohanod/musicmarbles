@@ -2,7 +2,7 @@ class Plank {
     constructor(a, b, clef) {
         this.a = a;
         this.b = b;
-        this.clef = clef; // 'treble' or 'bass'
+        this.clef = clef;
         this.active = 0;
 
         let delta_x = a[0] - b[0];
@@ -28,8 +28,8 @@ class Plank {
 function generatePlanksFromNotes(notes) {
     planks = [];
     notes.forEach(note => {
-        let clef = note.clef; // 'treble' or 'bass'
-        let yOffset = clef === 'treble' ? 100 : 300; // Adjust these values as needed
+        let clef = note.clef;
+        let yOffset = clef === 'treble' ? 100 : 300;
         let a = [note.x1, note.y1 + yOffset];
         let b = [note.x2, note.y2 + yOffset];
         planks.push(new Plank(a, b, clef));
@@ -39,7 +39,7 @@ function generatePlanksFromNotes(notes) {
 class Marble {
     constructor(position, clef) {
         this.position = position;
-        this.clef = clef; // 'treble' or 'bass'
+        this.clef = clef;
         this.trace = [];
         this.collision = -1;
     }
@@ -86,7 +86,7 @@ function play_sounds() {
             continue;
         let plank = planks[plank_index];
         if (plank.clef !== marble.clef)
-            continue; // Skip if clefs do not match
+            continue;
 
         let particle_position = [plank.center_x, plank.center_y];
         plank.active = track[plank_index].duration * 1200;
@@ -110,9 +110,15 @@ window.addEventListener('load', () => {
             }
             element.classList.add('active');
             load_track(music[i]);
-            generatePlanksFromNotes(music[i].notes); // Assuming notes are part of the music data
+            generatePlanksFromNotes(music[i].notes);
             run_all();
         };
         list.append(element);
     })
 });
+
+function load_track(track) {
+    window.track = track;
+    window.planks = [];
+    generatePlanksFromNotes(track.notes);
+}
